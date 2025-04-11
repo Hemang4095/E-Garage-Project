@@ -1,0 +1,85 @@
+.vehicle-container {
+    max-width: 450px;
+    margin: 50px auto;
+    padding:30px 20px;
+    border-radius: 10px;
+    background-color: #0c275b;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: #fff;
+  }
+  
+  .vehicle-title {
+    margin-bottom: 15px;
+    color: #fff;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  
+  .vehicle-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+    padding: 0 30px;
+  }
+  
+  .vehicle-form-group {
+    display: flex;
+    flex-direction: column;
+    width:22rem ;
+  }
+  
+  .vehicle-form-group label {
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  .vehicle-form-group select,
+  .vehicle-form-group input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    outline: none;
+  }
+  
+  .vehicle-form-group select:focus,
+  .vehicle-form-group input:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  }
+  
+  /* Special input styling for custom make/model */
+  .vehicle-custom-input {
+    margin-top: 10px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  /* Submit Button */
+  .vehicle-submit-btn {
+    padding: 12px;
+    background-color: #164b85;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background 0.3s ease;
+    margin: auto;
+    width: 50%;
+  }
+  
+  .vehicle-submit-btn:hover {
+    background-color: #3c70a9;
+  }
+  
+  .vehicle-submit-btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  

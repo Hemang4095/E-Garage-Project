@@ -1,0 +1,151 @@
+.my-veh-m-cont{
+    padding: 20px;
+    min-height: 70vh;
+}
+.my-veh-container {
+    height: auto;
+    gap: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+    padding: 20px;
+    margin: 50px auto;
+  }
+  
+ 
+  .my-veh-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .my-veh-noveh-para{
+    margin: auto
+  }
+ 
+  .my-veh-card {
+    background-color: #0c275b;
+    color: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
+    width: 80%;
+    max-width: 400px;
+    text-align: center;
+    margin: auto;
+    margin-bottom: 20px;
+  }
+  
+  
+  .my-veh-details {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  
+  
+  .my-veh-btn-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  
+  
+  .my-veh-btn {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+  }
+  
+  .my-veh-btn-view {
+    background-color: #ab0606;
+    color: #fff;
+  }
+  
+  .my-veh-btn-service {
+    background-color: #6080d8;
+    color: white;
+  }
+  
+  .my-veh-btn:hover {
+    opacity: 0.8;
+  }
+  
+
+  .my-veh-cta-section {
+    padding: 4rem 1rem;
+    background-color: #2b3e79;
+    /* Primary color */
+    color: white;
+    text-align: center;
+}
+
+.my-veh-cta-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.my-veh-cta-heading {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.my-veh-cta-text {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Buttons */
+.my-veh-cta-buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Book Appointment Button */
+.my-veh-cta-btn-1 {
+    background-color: #4b718a;
+    /* Secondary color */
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background 0.3s ease-in-out;
+}
+
+.my-veh-cta-btn-1:hover {
+    background-color: #8aa8bc;
+    /* Darker shade */
+    color: white;
+}
+
+/* Contact Us Button */
+.my-veh-cta-btn-2 {
+    background-color: white;
+    color: #1e40af;
+    /* Primary color */
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background 0.3s ease-in-out;
+}
+
+.my-veh-cta-btn-2:hover {
+    color: #f3f4f6;
+    /* Light gray */
+    background-color: #677fcc;
+    /* Primary color */
+}

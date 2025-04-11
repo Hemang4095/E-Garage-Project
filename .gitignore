@@ -1,0 +1,36 @@
+# Node modules
+node_modules/
+Frontend/node_modules/
+Backend/node_modules/
+
+# Build folders
+Frontend/build/
+Backend/dist/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment variables
+.env
+.env.local
+Frontend/.env
+Backend/.env
+
+# IDEs and system files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Testing and coverage
+coverage/
+Frontend/coverage/
+Backend/coverage/
+
+# Misc
+*.tgz
+.cache/
+.pnpm-debug.log

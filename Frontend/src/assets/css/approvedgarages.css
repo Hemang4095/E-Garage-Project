@@ -1,0 +1,134 @@
+.user-gara-container {
+  padding: 2rem;
+}
+
+.user-gara-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.user-gara-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 0.25fr));
+  gap: 1.5rem;
+}
+
+.user-gara-card {
+  background-color: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.user-gara-card:hover {
+  transform: translateY(-5px);
+}
+
+.user-gara-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.user-gara-info {
+  padding: 1rem;
+}
+
+.user-gara-name {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.user-gara-owner,
+.user-gara-contact {
+  font-size: 0.95rem;
+  color: #555;
+  margin-bottom: 0.25rem;
+}
+
+.user-gara-btns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+
+.user-gara-detail-btn {
+  display: inline-block;
+  margin-top: 0.75rem;
+  padding: 0.5rem 1rem;
+  background-color: #007bff;
+  color: #fff;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  transition: background-color 0.3s;
+  border: none;
+}
+
+.user-gara-detail-btn:hover {
+  background-color: #0056b3;
+  color: #fff;
+}
+
+.user-gara-filters {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.user-gara-search,
+.user-gara-filters select {
+  padding: 8px 12px;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  width: 160px;
+
+}
+
+
+.user-gara-search-container {
+  position: relative; 
+  width: 780px; /* Adjust as needed */
+}
+
+.user-gara-search {
+  width: 100%;
+  padding: 10px 36px 10px 14px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+.user-gara-search-icon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 18px;
+  color: #888;
+  pointer-events: none;
+}
+
+
+
+
+.user-gara-clear-btn {
+  padding: 8px 14px;
+  background-color: #3a4f9d;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-left: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.user-gara-clear-btn:hover {
+  background-color: #2a3a78;
+}

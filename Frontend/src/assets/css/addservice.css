@@ -1,0 +1,109 @@
+.addserv-container {
+    padding: 20px;
+    font-family: "Poppins", sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.updateserv-container{
+    padding: 12px;
+}
+
+.updateserv-go-back-button {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    padding: 8px 16px;
+    font-size: 14px;
+    background-color: #276595;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .updateserv-go-back-button:hover {
+    background-color: #4b7ba0;
+  }
+  
+
+.addserv-title {
+    margin-bottom: 20px;
+    padding: 12px 300px;
+    /* background: linear-gradient(135deg, #d1d5db, #e5e7eb); */
+    background: linear-gradient(181deg, #193d74, #beceee);;
+    /* border-radius: 60px; */
+    font-size: 24px; 
+    font-weight: bold;
+    color: #333;
+    border-radius: 6px 6px 0 0 ;
+}
+
+.addserv-form-box {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    max-width: 600px;
+    padding: 25px;
+    border-radius: 8px;
+    /* background: linear-gradient(183deg, #1f5ab4, #e5e7eb); */
+    background: linear-gradient(17deg, #0d2b58, #7db5c9);;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.updateserv-form-box{
+    gap: 6px;
+    padding: 16px 25px;
+}
+
+.update-form-label{
+    color: white;
+}
+
+.addserv-input-field {
+    width: 100%;
+    padding: 12px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+    color: black;
+}
+
+.addserv-input-field:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.addserv-err-text {
+    color: red;
+    font-size: 14px;
+}
+
+.addserv-check-container{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    color: white;
+}
+
+.addserv-submit-btn {
+    width: 30%;
+    padding: 12px;
+    background-color: #075396;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+    margin: 0 auto;
+}
+
+.addserv-submit-btn:hover {
+    background-color: #4171a2;
+}

@@ -1,0 +1,66 @@
+.my-appoint-container {
+    width: 1200px;
+    margin: 30px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    min-height: 90vh;
+  }
+  
+  .my-appoint-heading {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .my-noappoint-para{
+    text-align: center;
+  }
+  
+  .my-appoint-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .my-appoint-table th,
+  .my-appoint-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+    vertical-align: top;
+  }
+  
+  .my-appoint-table th {
+    background-color: #144093;
+    font-weight: 600;
+    color: white;
+    /* width: 100px; */
+  }
+  
+  .my-appoint-table td > div {
+    margin-bottom: 4px;
+  }
+
+  .my-appoint-status-pending { color: orange; }
+  .my-appoint-status-booked { color: green; }
+  .my-appoint-status-inprogress { color: blue; }
+  .my-appoint-status-completed { color: darkgreen; }
+  .my-appoint-status-rejected { color: red; }
+  
+
+  .my-appoint-pay-btn {
+    background-color: #28a745;
+    color: white;
+    padding: 6px 10px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  .my-appoint-pay-btn:hover {
+    background-color: #218838;
+  }
+  

@@ -1,0 +1,245 @@
+   .custom-scrollbar {
+    width: 100%;
+    height: auto;
+    overflow-y: scroll; /* Enable vertical scrollbar */
+    background: #f4f4f4;
+  }
+  
+  /* Custom scrollbar styles */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: #ddd;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #7597f1;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #4963a9;
+  }
+
+.landing-container{
+  height: 100vh;
+  width: 100vw;
+  overflow-x: hidden; /* Prevent horizontal scroll */
+  overflow-y: auto;
+}
+
+.landing-head-link:hover{
+  background-color: #7597f1 !important;
+}
+
+.nav-item:hover .landing-head-link{
+  background-color: #7597f1 !important;
+} 
+
+.nav-item.active .landing-head-link{
+  background-color: #7597f1 !important;
+}
+
+
+
+/* Landing Page Sections */
+
+.landing-section_2 {
+  width: 100%;
+  padding: 80px 5%;
+  background-color: #f9f9f9;
+}
+
+.landing-container_2 {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.landing-text-box_2 {
+  flex: 1;
+  padding: 20px;
+  max-width: 50%;
+}
+
+.landing-text-box_2 h2 {
+  font-size: 2rem;
+  color: #222;
+  margin-bottom: 15px;
+}
+
+.landing-text-box_2 p {
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.landing-text-box_2 a {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #162f71;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: 0.3s;
+}
+
+.landing-text-box_2 a:hover {
+  background-color: #4e8dc6;
+  color: #fff;
+}
+
+.landing-img-box_2 {
+  flex: 1;
+  max-width: 50%;
+  display: flex;
+  justify-content: center;
+}
+
+.landing-img-box_2 img {
+  max-width: 80%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin-left: 40px;
+}
+
+
+
+/* Why Choose Us Section */
+.choose-section {
+  padding: 4rem 0;
+  background-color: #0a0a7e; /*#353576*/
+  color: white;
+  text-align: center;
+}
+
+.choose-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.choose-header {
+  margin-bottom: 3rem;
+}
+
+.choose-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.choose-description {
+  max-width: 600px;
+  margin: 0 auto;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.choose-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .choose-grid {
+      grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.choose-card {
+  text-align: center;
+}
+
+.choose-icon-container {
+  width: 80px;
+  height: 80px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1rem;
+}
+
+.choose-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  stroke: white;
+}
+
+.choose-card-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.choose-card-text {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* Landing Call-To-Action (CTA) Section */
+.landing-cta {
+  padding: 4rem 0;
+  background-color: #1E293B;
+  color: white;
+  text-align: center;
+}
+
+.landing-cta-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.landing-cta-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.landing-cta-description {
+  font-size: 1.25rem;
+  max-width: 600px;
+  margin: 0 auto 2rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.landing-cta-button {
+  display: inline-block;
+  background-color: white;
+  color: #1E293B;
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 0.75rem 2rem;
+  border-radius: 8px;
+  transition: background 0.3s ease, transform 0.2s ease;
+  text-decoration: none;
+}
+
+.landing-cta-button:hover {
+  background-color: rgba(255, 255, 255, 0.8);
+  transform: scale(1.05);
+}
+
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .landing-container_2 {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .landing-text-box_2, .landing-img-box_2 {
+    max-width: 100%;
+  }
+}
+
+
