@@ -131,22 +131,6 @@ const getPaymentByAppointmentId = async (req, res) => {
 
 
 
-// const getPaymentsByUserId = async (req, res) => {
-//   try {
-//       const { userId } = req.params;
-
-//       const payments = await paymentModel.find({ userId })
-//           .populate("appointmentId")
-//           .sort({ createdAt: -1 });
-
-//       res.status(200).json({ success: true, data: payments });
-//   } catch (error) {
-//       console.error("Error fetching payments by user:", error);
-//       res.status(500).json({ success: false, message: "Server error" });
-//   }
-// };
-
-
 const getPaymentsByUserId = async (req, res) => {
   try {
     const { userId } = req.params;
@@ -186,10 +170,81 @@ const getRazorpayKey = (req, res) => {
 
 
 
+const getAllPayments = async (req, res) => {
+  try {
+    const payments = await paymentModel.find()
+      .populate("userId", "firstname email contactno")
+      .populate({
+        path: "appointmentId",
+        populate: [
+          { path: "serviceId", model: "Service" },
+          { path: "garageownerId", model: "garages", select: "name" },
+          { path: "vehicleId", model: "Vehicle" }
+        ]
+      })
+      .sort({ createdAt: -1 });
+
+    res.status(200).json({ success: true, data: payments });
+  } catch (error) {
+    console.error("Error fetching all payments:", error);
+    res.status(500).json({ success: false, message: "Server error" });
+  }
+};
+
+const getRevenueChartData = async (req, res) => {
+  try {
+    const revenueData = await paymentModel.aggregate([
+      {
+        $match: {
+          status: "success" // Only include successful payments
+        }
+      },
+      {
+        $group: {
+          _id: {
+            $dateToString: { format: "%Y-%m-%d", date: "$createdAt" }
+          },
+          total: { $sum: "$amount" }
+        }
+      },
+      { $sort: { _id: 1 } },
+      {
+        $project: {
+          _id: 0,
+          date: "$_id",
+          total: 1
+        }
+      }
+    ]);
+
+    res.status(200).json(revenueData);
+  } catch (err) {
+    console.error("Revenue chart error:", err);
+    res.status(500).json({ error: "Failed to fetch revenue chart data" });
+  }
+};
+
+
+
+const getTotalRevenue = async (req, res) => {
+  try {
+    const payments = await paymentModel.find({ status: "success" }); // Make sure your successful payments use this status
+    const totalRevenue = payments.reduce((sum, p) => sum + (p.amount || 0), 0);
+    res.status(200).json({ totalRevenue });
+  } catch (err) {
+    res.status(500).json({ message: "Failed to fetch revenue", error: err.message });
+  }
+};
+
+
+
 module.exports = {
   create_order,
   verify_order,
   getPaymentByAppointmentId,
   getPaymentsByUserId,
-  getRazorpayKey
+  getRazorpayKey,
+  getAllPayments,
+  getRevenueChartData,
+  getTotalRevenue
 };

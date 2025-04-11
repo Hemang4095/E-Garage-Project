@@ -46,6 +46,7 @@ import { Unauthorized } from './components/common/Unauthorized'
 import ProtectedRoute from './hooks/ProtectedRoute'
 import Invoice from './components/user/Invoice'
 import UserPayments from './components/user/UserPayments'
+import UsersPayments from './components/admin/UsersPayments'
 
 
 
@@ -95,6 +96,7 @@ function App() {
               <Route path='garagelist' element={<GarageList/>}></Route>
               <Route path='services' element={<Services/>}></Route>
               <Route path='profile' element={<AdminProfile/>}></Route>
+              <Route path='userspayments' element={<UsersPayments/>}></Route>
             </Route>
 
 

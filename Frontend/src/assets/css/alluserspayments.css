@@ -1,0 +1,53 @@
+.admin-user-pay-container {
+    padding: 2rem;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background: #f9fbff;
+  }
+  
+  .admin-user-pay-heading {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: #0d6efd;
+  }
+  
+  .admin-user-pay-search {
+    width: 100%;
+    max-width: 400px;
+    padding: 0.6rem;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+  }
+  
+  .admin-user-pay-table-wrapper {
+    overflow-x: auto;
+  }
+  
+  .admin-user-pay-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .admin-user-pay-table th,
+  .admin-user-pay-table td {
+    padding: 0.75rem 1rem;
+    border: 1px solid #ddd;
+    text-align: left;
+  }
+  
+  .admin-user-pay-table th {
+    background-color: #eef4ff;
+    color: #333;
+    font-weight: bold;
+  }
+  
+  .admin-user-pay-total {
+    text-align: right;
+    margin-top: 1.5rem;
+    font-size: 1.2rem;
+    color: #0d6efd;
+  }
+  
+  
