@@ -237,6 +237,54 @@ const getTotalRevenue = async (req, res) => {
 };
 
 
+const getGarageOwnerPayments = async (req, res) => {
+  try {
+    const garageOwnerId = req.params.garageOwnerId;
+
+    const payments = await paymentModel.find()
+      .populate({
+        path: "appointmentId",
+        populate: [
+          { path: "serviceId", select: "name" },
+          { path: "vehicleId", select: "make model" },
+          {
+            path: "garageownerId", // this is the garage
+            populate: {
+              path: "userId", // the actual garage owner
+              select: "firstname _id"
+            }
+          }
+        ],
+      })
+      .populate("userId", "firstname contactno") // user who booked
+      .sort({ createdAt: -1 });
+
+    // Filter by matching the userId of the garage to the given garageOwnerId
+    const filteredPayments = payments.filter(
+      (p) =>
+        p.appointmentId?.garageownerId?.userId?._id.toString() === garageOwnerId
+    );
+
+const totalRevenue = filteredPayments.reduce(
+  (acc, curr) => acc + (curr.amount || 0),
+  0
+);
+
+    res.status(200).json({ data: filteredPayments, totalRevenue });
+  } catch (error) {
+    console.error("Error fetching garage owner payments:", error);
+    res.status(500).json({ message: "Server error" });
+  }
+};
+
+
+
+
+
+
+
+
+
 
 module.exports = {
   create_order,
@@ -246,5 +294,6 @@ module.exports = {
   getRazorpayKey,
   getAllPayments,
   getRevenueChartData,
-  getTotalRevenue
+  getTotalRevenue,
+  getGarageOwnerPayments
 };

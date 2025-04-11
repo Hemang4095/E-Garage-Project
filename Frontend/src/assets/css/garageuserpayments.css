@@ -1,0 +1,54 @@
+.garageown-paym-container {
+  padding: 20px;
+  background-color: #f9fbff;
+}
+
+.garageown-paym-heading {
+  font-size: 24px;
+  margin-bottom: 16px;
+}
+
+.garageown-paym-search {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.garageown-paym-table-wrapper {
+  overflow-x: auto;
+}
+
+.garageown-paym-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.garageown-paym-table th,
+.garageown-paym-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.garageown-paym-total {
+  margin-top: 16px;
+  text-align: right;
+  font-weight: bold;
+}
+
+.garageown-paym-pagination {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.garageown-paym-page-btn {
+  margin: 0 5px;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+.garageown-paym-page-btn.active {
+  background-color: #007bff;
+  color: white;
+}
+
+  

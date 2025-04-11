@@ -171,9 +171,14 @@ export const GarageOwnerNavbar = ({ toggleSidebar }) => {
             <ul className="user-nav-div-item"> 
               <li className="user-nav-item"><NavLink to="" end className={({ isActive }) => `user-nav-link ${isActive ? 'user-active-nav-link' : ''}`}>Home</NavLink></li>
               <li className="user-nav-item"><NavLink to="/contactus"  className={({ isActive }) => `user-nav-link ${isActive ? 'user-active-nav-link' : ''}`}>Contact</NavLink></li>
+              <li className={`user-nav-item user-nav-garage-dropdown ${isGarageActive ? "user-nav-active" : ""}`}>
+                <span className="user-nav-link">Appointments ▾</span>
+                <ul className="user-nav-garage-dropdown-menu">
               <li className="user-nav-item"><NavLink to="appointments" className={({ isActive }) => `user-nav-link ${isActive ? 'user-active-nav-link' : ''}`}>Appointments</NavLink></li>
-              {/* <li className="user-nav-item"><Link to="mygarages" className="user-nav-link">MyGarages</Link></li>              
-              <li className="user-nav-item"><Link to="addgarage" className="user-nav-link">AddGarage</Link></li> */}
+              <li className="user-nav-item"><NavLink to="garageuserpayments" className={({ isActive }) => `user-nav-link ${isActive ? 'user-active-nav-link' : ''}`}>Payments</NavLink></li>
+              </ul>
+              </li>
+              
               <li className={`user-nav-item user-nav-garage-dropdown ${isGarageActive ? "user-nav-active" : ""}`}>
                 <span className="user-nav-link">Garages ▾</span>
                 <ul className="user-nav-garage-dropdown-menu">

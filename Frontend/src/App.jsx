@@ -47,6 +47,7 @@ import ProtectedRoute from './hooks/ProtectedRoute'
 import Invoice from './components/user/Invoice'
 import UserPayments from './components/user/UserPayments'
 import UsersPayments from './components/admin/UsersPayments'
+import { GarageUserPayments } from './components/garageowner/GarageUserPayments'
 
 
 
@@ -112,6 +113,7 @@ function App() {
               <Route path='profile' element={<GarageOwnerProfile/>}></Route>
               <Route path='appointments' element={<Appointments/>}></Route>
               <Route path='garageservices' element={<GarageServices/>}></Route>
+              <Route path='garageuserpayments' element={<GarageUserPayments/>}></Route>
             </Route>
   
   

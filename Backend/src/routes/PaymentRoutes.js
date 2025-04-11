@@ -9,6 +9,7 @@ router.get("/getpaymentbyuserid/:userId", paymentController.getPaymentsByUserId)
 router.get("/getkey", paymentController.getRazorpayKey)
 router.get("/getallpayments", paymentController.getAllPayments)
 router.get("/getrevenuechartdata", paymentController.getRevenueChartData)
-router.get("/gettotalrevenue", paymentController.getTotalRevenue)
+router.get("/gettotalrevenue", paymentController.getTotalRevenue) 
+router.get("/getgarageownerpayments/:garageOwnerId", paymentController.getGarageOwnerPayments)
 
 module.exports = router; 

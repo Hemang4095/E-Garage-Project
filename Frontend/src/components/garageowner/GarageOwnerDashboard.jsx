@@ -10,7 +10,18 @@ export const GarageOwnerDashboard = () => {
   const [appointments, setAppointments] = useState([]);
   const [appointmentsCount, setAppointmentsCount] = useState(0);
   const [servicesCount,setServicesCount] = useState(0)
+  const [totalRevenue, setTotalRevenue] = useState(0);
   const userId = localStorage.getItem("id");
+
+
+  const fetchRevenue = async () => {
+    try {
+      const res = await axios.get(`/payment/getgarageownerpayments/${userId}`);
+      setTotalRevenue(res.data.totalRevenue || 0);
+    } catch (error) {
+      console.error("Error fetching revenue:", error);
+    }
+  };
 
   const fetchAppointments = async () => {
     try {
@@ -34,6 +45,7 @@ export const GarageOwnerDashboard = () => {
   useEffect(() => {
     fetchAppointments();
     fetchServices();
+    fetchRevenue();
   }, []);
 
   // 📊 Count statuses for PieChart
@@ -136,7 +148,7 @@ export const GarageOwnerDashboard = () => {
           <div className="garown-dash-box">
             <div className="garown-dash-box-inner garown-dash-blue-4">
               <div className="garown-dash-box-content">
-                <h3>₹1023</h3>
+                <h3>₹ {(totalRevenue / 100).toFixed(2)}</h3>
                 <p>Monthly Earnings</p>
               </div>
               <div className="garown-dash-icon-wrapper">
@@ -146,7 +158,7 @@ export const GarageOwnerDashboard = () => {
                   </text>
                 </svg>
               </div>
-              <a href="#" className="garown-dash-footer">More info</a>
+              <Link to="garageuserpayments" className="garown-dash-footer">More info</Link>
             </div>
           </div>
 

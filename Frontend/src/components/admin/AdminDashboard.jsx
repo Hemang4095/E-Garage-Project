@@ -27,21 +27,6 @@ export const AdminDashboard = () => {
     }
   };
 
-  // const fetchRevenueChartData = async () => {
-  //   try {
-  //     const res = await axios.get('/payment/getrevenuechartdata');
-  //     const formattedData = res.data.map(item => ({
-  //       date: item.date,
-  //       revenue: item.total / 100 // Convert paise to ₹
-  //     }));
-  //     setRevenueData(formattedData);
-  //   } catch (err) {
-  //     console.error("Error fetching revenue chart data:", err);
-  //   }
-  // };
-
-
-
 
   const fetchRevenueChartData = async () => {
     try {
