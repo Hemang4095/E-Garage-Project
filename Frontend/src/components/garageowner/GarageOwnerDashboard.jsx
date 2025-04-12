@@ -5,6 +5,8 @@ import React, { useEffect, useState } from 'react';
 import "../../assets/css/garageownerdashboard.css"
 import { Link } from 'react-router-dom';
 
+
+
 export const GarageOwnerDashboard = () => {
 
   const [appointments, setAppointments] = useState([]);
@@ -12,7 +14,6 @@ export const GarageOwnerDashboard = () => {
   const [servicesCount,setServicesCount] = useState(0)
   const [totalRevenue, setTotalRevenue] = useState(0);
   const userId = localStorage.getItem("id");
-
 
   const fetchRevenue = async () => {
     try {
@@ -25,6 +26,7 @@ export const GarageOwnerDashboard = () => {
 
   const fetchAppointments = async () => {
     try {
+      
       const response = await axios.get(`/appointment/getappointmentbygarageowneruserid/${userId}`);
       setAppointments(response.data.data);
       setAppointmentsCount(response.data.data.length)
@@ -189,6 +191,7 @@ export const GarageOwnerDashboard = () => {
     </div>
   </div>
 )}
+
 
     </div>
   );

@@ -128,7 +128,7 @@
     border-radius: 16px;
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.35);
     margin: 20px;
-    max-width: 48%;
+    max-width: 100%;
     transition: all 0.3s ease;
   }
   
@@ -168,5 +168,70 @@
   
   .recharts-tooltip-item {
     color: #121769 !important;
+  }
+  
+
+  .admin-dash-piecharts{
+    width: 629px;
+    height: 443px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border-radius: 12px;
+  }
+  
+  .admin-dash-mui-pie{
+    margin: auto;
+    padding:16px;
+  }
+
+  .admin-userchart-container {
+    /* background-color: #e3f2fd; */
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    max-width: 800px;
+    /* margin: 20px auto; */
+  }
+  
+  .admin-userchart-title {
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .admin-userchart-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .admin-userchart-legend {
+    /* margin-left: 30px; */
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+  }
+  
+  .admin-userchart-legend-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: #333;
+  }
+  
+  .admin-userchart-legend-color {
+    width: 16px;
+    height: 16px;
+    border-radius: 3px;
+    display: inline-block;
+    margin-right: 8px;
+  }
+  
+  .admin-userchart-tooltip {
+    background: #ffffff;
+    border: 1px solid #ddd;
+    padding: 8px;
+    border-radius: 4px;
   }
   

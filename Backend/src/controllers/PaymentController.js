@@ -4,6 +4,7 @@ const paymentModel = require("../models/PaymentModel");
 const appointmentModel = require("../models/AppointmentModel");
 const { sendingMail } = require("../utils/MailUtil");
 
+
 // Razorpay Instance
 const razorpay = new Razorpay({
   key_id: process.env.RAZORPAY_KEY,
@@ -286,6 +287,10 @@ const totalRevenue = filteredPayments.reduce(
 
 
 
+
+
+
+
 module.exports = {
   create_order,
   verify_order,
@@ -295,5 +300,6 @@ module.exports = {
   getAllPayments,
   getRevenueChartData,
   getTotalRevenue,
-  getGarageOwnerPayments
+  getGarageOwnerPayments,
+  
 };

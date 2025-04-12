@@ -1,9 +1,10 @@
 import { Typography } from '@mui/material';
-import { PieChart } from '@mui/x-charts';
+import { PieChart as MuiPieChart } from '@mui/x-charts';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
-import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
+import { PieChart as RechartsPieChart, LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, ResponsiveContainer, Pie, Cell, Legend, } from 'recharts';
+
 import dayjs from "dayjs";
 import "../../assets/css/admindashboard.css"
 
@@ -17,6 +18,29 @@ export const AdminDashboard = () => {
   const [appointmentsCount, setAppointmentsCount] = useState(0)
   const [totalRevenue, setTotalRevenue] = useState(0);
   const [revenueData, setRevenueData] = useState([]);
+
+  const [data, setData] = useState([
+    { name: "Active", value: 0 },
+    { name: "Inactive", value: 0 }
+  ]);
+
+  const fetchUsersChart = async () => {
+    try {
+      const res = await axios.get("/users");
+      const users = res.data.data;
+      const active = users.filter(user => user.status).length;
+      const inactive = users.length - active;
+
+      setData([
+        { name: "Active", value: active },
+        { name: "Inactive", value: inactive }
+      ]);
+    } catch (error) {
+      console.error("Error fetching user stats", error);
+    }
+  };
+
+
 
   const fetchRevenue = async () => {
     try {
@@ -96,9 +120,15 @@ export const AdminDashboard = () => {
     fetchUsers();
     fetchRevenue();
     fetchRevenueChartData();
+    fetchUsersChart();
 
 
   }, []);
+
+
+  // const COLORS = ["#28a745", "#dc3545"];
+  const COLORS = ["#007bff", "#0056b3"];  // Blue shades for the theme
+
 
   // 📊 Count statuses for PieChart
   const statusCount = appointments.reduce((acc, appt) => {
@@ -106,14 +136,28 @@ export const AdminDashboard = () => {
     return acc;
   }, {});
 
-  // 🎨 Define status colors
+  
   const statusColors = {
-    pending: "#FFA500",
-    booked: "#4CAF50",
-    inProgress: "#2196F3",
-    completed: "#9C27B0",
-    rejected: "#F44336",
+    pending: "#4FC3F7",
+    booked: "#81D4FA",
+    inProgress: "#64B5F6",
+    completed: "#42A5F5",
+    rejected: "#2196F3",   
   };
+  // const statusColors = {
+  //   pending: "#BBDEFB",
+  //   booked: "#64B5F6",
+  //   inProgress: "#42A5F5",
+  //   completed: "#2196F3",
+  //   rejected: "#1565C0",   
+  // };
+  // const statusColors = {
+  //   pending: "#1976D2",
+  //   booked: "#1565C0",
+  //   inProgress: "#0D47A1",
+  //   completed: "#2196F3",
+  //   rejected: "#1E88E5",   
+  // };
 
   const pieData = Object.entries(statusCount).map(([status, count], index) => ({
     id: index,
@@ -222,15 +266,15 @@ export const AdminDashboard = () => {
 
       </div>
 
-      <h2 className="own-appoint-title">Booking Appointments</h2>
 
-      {appointments.length > 0 && (
-        <div style={{ marginBottom: "30px", display: "flex", justifyContent: "center" }}>
-          <div>
+      <div style={{ marginBottom: "30px", display: "flex", justifyContent: "space-around", alignItems:"center" }}>
+        {appointments.length > 0 && (
+          <div className='admin-dash-piecharts'>
+            <h2 className="own-appoint-title">Booking Appointments</h2>
             <Typography variant="h6" gutterBottom align="center">
               Appointment Status Distribution
             </Typography>
-            <PieChart
+            <MuiPieChart className='admin-dash-mui-pie'
               series={[
                 {
                   data: pieData,
@@ -242,8 +286,46 @@ export const AdminDashboard = () => {
               height={300}
             />
           </div>
+        )}
+
+<div className="admin-userchart-container">
+      <h3 className="admin-userchart-title">Active Users Overview</h3>
+      <div className="admin-userchart-content">
+        <RechartsPieChart width={480} height={350}>
+          <Pie
+            data={data}
+            cx="50%"
+            cy="50%"
+            labelLine={false}
+            label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
+            outerRadius={130}
+            dataKey="value"
+          >
+            {data.map((_, index) => (
+              <Cell key={`cell-${index}`} fill={COLORS[index]} />
+            ))}
+          </Pie>
+          <Tooltip className="admin-userchart-tooltip" />
+        </RechartsPieChart>
+
+        <div className="admin-userchart-legend">
+          {data.map((entry, index) => (
+            <div key={index} className="admin-userchart-legend-item">
+              <span
+                className="admin-userchart-legend-color"
+                style={{ backgroundColor: COLORS[index] }}
+              />
+              {entry.name}
+            </div>
+          ))}
         </div>
-      )}
+      </div>
+    </div>
+
+      </div>
+
+
+
 
 
       <div className="admin-revenue-container">
@@ -283,6 +365,12 @@ export const AdminDashboard = () => {
           </ResponsiveContainer>
         </div>
       </div>
+
+
+
+
+
+
 
 
     </div>

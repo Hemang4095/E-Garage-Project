@@ -48,6 +48,7 @@ import Invoice from './components/user/Invoice'
 import UserPayments from './components/user/UserPayments'
 import UsersPayments from './components/admin/UsersPayments'
 import { GarageUserPayments } from './components/garageowner/GarageUserPayments'
+import { RegisteredUsers } from './components/admin/RegisteredUsers'
 
 
 
@@ -98,6 +99,7 @@ function App() {
               <Route path='services' element={<Services/>}></Route>
               <Route path='profile' element={<AdminProfile/>}></Route>
               <Route path='userspayments' element={<UsersPayments/>}></Route>
+              <Route path='registeredusers' element={<RegisteredUsers/>}></Route>
             </Route>
 
 

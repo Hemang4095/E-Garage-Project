@@ -12,4 +12,5 @@ router.get("/getrevenuechartdata", paymentController.getRevenueChartData)
 router.get("/gettotalrevenue", paymentController.getTotalRevenue) 
 router.get("/getgarageownerpayments/:garageOwnerId", paymentController.getGarageOwnerPayments)
 
+
 module.exports = router; 
