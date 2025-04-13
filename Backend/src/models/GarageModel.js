@@ -1,6 +1,7 @@
 const mongoose = require("mongoose")
 const Schema = mongoose.Schema
 
+
 const garageSchema = new Schema({
     name:{
         type:String,
@@ -56,6 +57,10 @@ const garageSchema = new Schema({
     garageURL:{
         type:String,
         required:true
+    },
+    rating:{
+        type:Schema.Types.ObjectId,
+        ref:"Review"
     }
 },{
     timestamps:true

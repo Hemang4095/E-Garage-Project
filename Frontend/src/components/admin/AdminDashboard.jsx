@@ -221,7 +221,7 @@ export const AdminDashboard = () => {
                     <circle cx="12" cy="7" r="4" />
                   </svg>
                 </div>
-                <Link to="" className="admin-dash-footer">More info</Link>
+                <Link to="registeredusers" className="admin-dash-footer">More info</Link>
               </div>
             </div>
 

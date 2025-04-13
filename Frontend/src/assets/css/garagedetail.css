@@ -275,3 +275,19 @@
 .user-gara-det-go-back-button:hover{
   background-color: #4b7ba0;
 }
+
+
+.user-gara-det-review-btn {
+  margin-top: 15px;
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.user-gara-det-review-btn:hover {
+  background-color: #0056b3;
+}

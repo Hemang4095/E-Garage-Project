@@ -288,8 +288,22 @@ const addUserWithFile = async (req, res) => {
   
 
 
+  const toggleUserStatus = async (req, res) => {
+    try {
+        const user = await userModel.findById(req.params.id);
+        if (!user) return res.status(404).json({ message: "User not found" });
+
+        user.status = !user.status;
+        await user.save();
+
+        res.status(200).json({ message: `User is now ${user.status ? "Active" : "Inactive"}` });
+    } catch (error) {
+        res.status(500).json({ message: "Error toggling status", error });
+    }
+};
+
 
 
 module.exports = {
-    getAllUsers, addUsers, deleteUsers, getUserById, signup, loginUser, forgotPassword, resetpassword, addUserWithFile,updateUserById
+    getAllUsers, addUsers, deleteUsers, getUserById, signup, loginUser, forgotPassword, resetpassword, addUserWithFile,updateUserById, toggleUserStatus
 }

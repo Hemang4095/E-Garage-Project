@@ -6,6 +6,16 @@ import "../../assets/css/adminuserlist.css"
 export const RegisteredUsers = () => {
     const [users, setUsers] = useState([]);
 
+    const handleStatusToggle = async (id) => {
+        try {
+            await axios.put(`/toggle-userstatus/${id}`);
+            toast.success("User status updated");
+            fetchUsers();
+        } catch (error) {
+            toast.error("Failed to update status");
+        }
+    };
+
     const fetchUsers = async () => {
         try {
             const res = await axios.get("/users");
@@ -27,6 +37,16 @@ export const RegisteredUsers = () => {
         }
     };
 
+
+    const [currentPage, setCurrentPage] = useState(1);
+    const usersPerPage = 10;
+
+    const indexOfLastUser = currentPage * usersPerPage;
+    const indexOfFirstUser = indexOfLastUser - usersPerPage;
+    const currentUsers = users.slice(indexOfFirstUser, indexOfLastUser);
+    const totalPages = Math.ceil(users.length / usersPerPage);
+
+
     useEffect(() => {
         fetchUsers();
     }, []);
@@ -47,7 +67,7 @@ export const RegisteredUsers = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {users
+                    {currentUsers
                         .map(user => (
                             <tr key={user._id}>
                                 <td>{user.firstname}{user.lastname}</td>
@@ -57,6 +77,12 @@ export const RegisteredUsers = () => {
                                 <td>{user.status ? "Active" : "Inactive"}</td>
                                 <td>{new Date(user.createdAt).toLocaleDateString()}</td>
                                 <td>
+                                    <button
+                                        className={`admin-userlist-statusbtn ${user.status ? "inactive" : "active"}`}
+                                        onClick={() => handleStatusToggle(user._id)}
+                                    >
+                                        {user.status ? "Block" : "Unblock"}
+                                    </button>
                                     <button
                                         className="admin-userlist-deletebtn"
                                         onClick={() => handleDelete(user._id)}
@@ -68,6 +94,18 @@ export const RegisteredUsers = () => {
                         ))}
                 </tbody>
             </table>
+
+            <div className="admin-userlist-pagination">
+    {Array.from({ length: totalPages }, (_, index) => (
+        <button
+            key={index + 1}
+            className={`admin-userlist-pagebtn ${currentPage === index + 1 ? "active" : ""}`}
+            onClick={() => setCurrentPage(index + 1)}
+        >
+            {index + 1}
+        </button>
+    ))}
+</div>
         </div>
     );
 };

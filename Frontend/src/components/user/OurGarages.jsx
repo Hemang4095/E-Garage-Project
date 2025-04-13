@@ -1,99 +1,3 @@
-// import React, { useEffect, useState } from "react";
-// import axios from "axios";
-// import "../../assets/css/approvedgarages.css";
-// import { Link, useLocation, useNavigate } from "react-router-dom";
-// import { Bounce, toast, ToastContainer } from "react-toastify";
-
-// export const OurGarages = () => {
-//     const [garages, setGarages] = useState([]);
-//     const location = useLocation();
-//     const navigate = useNavigate();
-//     const selectedVehicle = location.state?.selectedVehicle;
-
-    
-
-//     useEffect(() => {
-//         const fetchGarages = async () => {
-//             try {
-//                 const res = await axios.get("/garage/getApprovedGarages");
-//                 setGarages(res.data.data);
-//             } catch (err) {
-//                 console.error("Error fetching garages", err);
-//             }
-//         };
-
-//         fetchGarages();
-//     }, []);
-
-
-//     const handleSelectGarage = (garage) => {
-//         if (!selectedVehicle) {
-//             window.scrollTo({ top: 0, behavior: 'smooth' }); 
-//             toast.warn('Please select a vehicle before selecting a garage.', {
-//                 position: "top-right",
-//                 autoClose: 2000,
-//                 hideProgressBar: false,
-//                 closeOnClick: false,
-//                 pauseOnHover: true,
-//                 draggable: true,
-//                 progress: undefined,
-//                 theme: "dark",
-//                 transition: Bounce,
-//                 onClose: () => navigate("/user/myvehicles")
-//                 });
-    
-//             return;
-//         }
-//         navigate(`/user/garagedetail/${garage._id}`, {
-//             state: { selectedGarage: garage, selectedVehicle }
-//         });
-//     };
-
-
-//     return (
-//         <div className="user-gara-container">
-//             <ToastContainer
-//                 position="top-right"
-//                 autoClose={2000}
-//                 hideProgressBar={false}
-//                 newestOnTop={false}
-//                 closeOnClick={false}
-//                 rtl={false}
-//                 pauseOnFocusLoss
-//                 draggable
-//                 pauseOnHover
-//                 theme="dark"
-//                 transition={Bounce}
-//             />
-//             <h2 className="user-gara-title">Approved Garages</h2>
-//             <div className="user-gara-list">
-//                 {garages.map((garage) => (
-//                     <div key={garage._id} className="user-gara-card">
-//                         <img src={garage.garageURL} alt={garage.name} className="user-gara-image" />
-//                         <div className="user-gara-info">
-//                             <h3 className="user-gara-name">{garage.name}</h3>
-//                             <p className="user-gara-owner">Owner: {garage.owner}</p>
-//                             <p className="user-gara-contact">📍 {garage.areaId?.name}, {garage.cityId?.name}, {garage.stateId?.name}</p>
-//                             <p className="user-gara-contact">📞 {garage.phoneno}</p>
-//                             <p className="user-gara-contact">📧 {garage.email}</p>
-//                             <div className="user-gara-btns">
-//                             <Link to={`/user/garagedetail/${garage._id}`} className="user-gara-detail-btn">
-//                                 View Details
-//                             </Link>
-//                             <button onClick={() =>  handleSelectGarage(garage)} className="user-gara-detail-btn">
-//                                 Select Garage
-//                             </button>
-//                             </div>
-//                         </div>
-//                     </div>
-//                 ))}
-//             </div>
-//         </div>
-//     );
-// };
-
-
-
 
 import React, { useEffect, useState } from "react";
 import axios from "axios";
@@ -112,6 +16,9 @@ export const OurGarages = () => {
     const [selectedCity, setSelectedCity] = useState("");
     const [selectedArea, setSelectedArea] = useState("");
     const [searchText, setSearchText] = useState("");
+    const [garageRatings, setGarageRatings] = useState({});
+
+
 
     const location = useLocation();
     const navigate = useNavigate();
@@ -124,9 +31,27 @@ export const OurGarages = () => {
                     axios.get("/garage/getApprovedGarages"),
                     axios.get("/state/getallstates"),
                 ]);
+
+                const garagesData = garageRes.data.data;
                 setGarages(garageRes.data.data);
                 setFilteredGarages(garageRes.data.data);
                 setStates(stateRes.data.data);
+
+                const ratings = {};
+                await Promise.all(
+                    garagesData.map(async (garage) => {
+                        try {
+                            const ratingRes = await axios.get(`/review/averagereview/${garage._id}`);
+                            ratings[garage._id] = ratingRes.data.average?.toFixed(1) || null;
+                        } catch (err) {
+                            console.error(`Error fetching rating for ${garage.name}`, err);
+                            ratings[garage._id] = null;
+                        }
+                    })
+                );
+                setGarageRatings(ratings);
+
+
             } catch (err) {
                 console.error("Error fetching initial data", err);
             }
@@ -139,9 +64,13 @@ export const OurGarages = () => {
         let result = garages;
 
         if (searchText.trim()) {
-            result = result.filter(g =>
-                g.name.toLowerCase().includes(searchText.toLowerCase())
-            );
+            result = result.filter(g => {
+                const nameMatch = g.name.toLowerCase().includes(searchText.toLowerCase());
+                const areaMatch = g.areaId?.name?.toLowerCase().includes(searchText.toLowerCase());
+                const rating = garageRatings[g._id];
+                const ratingMatch = rating?.toString().includes(searchText);
+                return nameMatch || areaMatch || ratingMatch;
+            });
         }
 
         if (selectedState) {
@@ -157,7 +86,7 @@ export const OurGarages = () => {
         }
 
         setFilteredGarages(result);
-    }, [searchText, selectedState, selectedCity, selectedArea, garages]);
+    }, [searchText, selectedState, selectedCity, selectedArea, garages, garageRatings]);
 
     const handleStateChange = async (e) => {
         const stateId = e.target.value;
@@ -211,14 +140,21 @@ export const OurGarages = () => {
             <ToastContainer />
             <h2 className="user-gara-title">Approved Garages</h2>
 
-            {/* <div className="user-gara-filters">
-                <input
-                    type="text"
-                    placeholder="Search garage by name..."
-                    value={searchText}
-                    onChange={(e) => setSearchText(e.target.value)}
-                    className="user-gara-search"
-                />
+
+
+            <div className="user-gara-filters">
+
+                <div className="user-gara-search-container">
+                    <input
+                        type="text"
+                        placeholder="Search garage by name..."
+                        value={searchText}
+                        onChange={(e) => setSearchText(e.target.value)}
+                        className="user-gara-search"
+                    />
+                    <span className="user-gara-search-icon"><Search size={18} color="#888" /></span>
+                </div>
+
 
                 <select value={selectedState} onChange={handleStateChange} className="user-gara-select">
                     <option value="">Select State</option>
@@ -240,63 +176,21 @@ export const OurGarages = () => {
                         <option key={a._id} value={a._id}>{a.name}</option>
                     ))}
                 </select>
-            </div> */}
 
-<div className="user-gara-filters">
-    {/* <input
-        type="text"
-        placeholder="Search garage by name..."
-        value={searchText}
-        onChange={(e) => setSearchText(e.target.value)}
-        className="user-gara-search"
-    /> */}
-    <div className="user-gara-search-container">
-    <input
-        type="text"
-        placeholder="Search garage by name..."
-        value={searchText}
-        onChange={(e) => setSearchText(e.target.value)}
-        className="user-gara-search"
-    />
-    <span className="user-gara-search-icon"><Search size={18} color="#888" /></span>
-</div>
-
-
-    <select value={selectedState} onChange={handleStateChange} className="user-gara-select">
-        <option value="">Select State</option>
-        {states.map((s) => (
-            <option key={s._id} value={s._id}>{s.name}</option>
-        ))}
-    </select>
-
-    <select value={selectedCity} onChange={handleCityChange} className="user-gara-select">
-        <option value="">Select City</option>
-        {cities.map((c) => (
-            <option key={c._id} value={c._id}>{c.name}</option>
-        ))}
-    </select>
-
-    <select value={selectedArea} onChange={(e) => setSelectedArea(e.target.value)} className="user-gara-select">
-        <option value="">Select Area</option>
-        {areas.map((a) => (
-            <option key={a._id} value={a._id}>{a.name}</option>
-        ))}
-    </select>
-
-    <button
-        onClick={() => {
-            setSearchText("");
-            setSelectedState("");
-            setSelectedCity("");
-            setSelectedArea("");
-            setCities([]);
-            setAreas([]);
-        }}
-        className="user-gara-clear-btn"
-    >
-        Clear Filters
-    </button>
-</div>
+                <button
+                    onClick={() => {
+                        setSearchText("");
+                        setSelectedState("");
+                        setSelectedCity("");
+                        setSelectedArea("");
+                        setCities([]);
+                        setAreas([]);
+                    }}
+                    className="user-gara-clear-btn"
+                >
+                    Clear Filters
+                </button>
+            </div>
 
 
             <div className="user-gara-list">
@@ -312,6 +206,10 @@ export const OurGarages = () => {
                                 <p className="user-gara-contact">📍 {garage.areaId?.name}, {garage.cityId?.name}, {garage.stateId?.name}</p>
                                 <p className="user-gara-contact">📞 {garage.phoneno}</p>
                                 <p className="user-gara-contact">📧 {garage.email}</p>
+                                <p className="user-gara-contact">
+                                    ⭐ Rating:{" "}
+                                    {garageRatings[garage._id] !== undefined ? `${garageRatings[garage._id]} / 5` : "No ratings" }</p>
+
                                 <div className="user-gara-btns">
                                     <Link to={`/user/garagedetail/${garage._id}`} className="user-gara-detail-btn">
                                         View Details

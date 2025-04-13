@@ -49,6 +49,8 @@ import UserPayments from './components/user/UserPayments'
 import UsersPayments from './components/admin/UsersPayments'
 import { GarageUserPayments } from './components/garageowner/GarageUserPayments'
 import { RegisteredUsers } from './components/admin/RegisteredUsers'
+import { AddReview } from './components/user/AddReview'
+
 
 
 
@@ -131,6 +133,7 @@ function App() {
               <Route path='garagedetail/:id' element={<GarageDetails/>}></Route>
               <Route path='invoice/:id' element={<Invoice/>}></Route>
               <Route path='userpayments' element={<UserPayments/>}></Route>
+              <Route path='addreview/:garageId' element={<AddReview/>}></Route>
             </Route>
 
 

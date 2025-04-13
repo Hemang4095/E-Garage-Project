@@ -56,6 +56,9 @@ app.use("/appointment", appointmentRoutes)
 const paymentRoutes = require("./src/routes/PaymentRoutes")
 app.use("/payment", paymentRoutes)
 
+const reviewRoutes = require("./src/routes/ReviewRoutes")
+app.use("/review", reviewRoutes)
+
 
 
 mongoose.connect("mongodb://localhost:27017/25_node_internship").then(() => {

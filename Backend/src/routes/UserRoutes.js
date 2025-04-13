@@ -12,6 +12,8 @@ routes.post("/user/forgetpassword", userController.forgotPassword)
 routes.post("/user/resetpassword", userController.resetpassword)
 routes.post("/addwithfile", userController.addUserWithFile)
 routes.put("/updateuserby/:id", userController.updateUserById)
+routes.put("/toggle-userstatus/:id", userController.toggleUserStatus)
+
 
 
 module.exports = routes
