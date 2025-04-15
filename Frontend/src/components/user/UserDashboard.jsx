@@ -33,7 +33,7 @@ export const UserDashboard = () => {
           <section
             style={{
               // background: "linear-gradient(90deg, #1e3a8a, #3b82f6)",
-              background: " linear-gradient(155deg, rgb(122 154 243), rgb(30 85 175))",
+              background: "linear-gradient(155deg, rgb(122 154 243), rgb(30 85 175))",
               color: "white",
               padding: "80px 20px",
               textAlign: "center"
@@ -170,7 +170,7 @@ export const UserDashboard = () => {
                     {/* <button  className='serv-btn serv-book-btn'> 
                   Book Appointment
                 </button> */}
-                    <Link to="bookappointment" className='serv-btn serv-book-btn'>Book Appointment</Link>
+                    {/* <Link to="bookappointment" className='serv-btn serv-book-btn'>Book Appointment</Link> */}
                   </div>
                 </div>
               </div>
@@ -179,7 +179,7 @@ export const UserDashboard = () => {
         )}
 
         {availableServices.length > 3 && (
-          <button onClick={() => navigate("services")} className="use-dash-explore-btn">
+          <button onClick={() => navigate("garages")} className="use-dash-explore-btn">
             Explore More
           </button>
         )}

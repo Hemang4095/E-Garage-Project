@@ -13,8 +13,6 @@ export const OurServices = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  // 🟡 Get selected vehicle from previous page
-  const { selectedVehicle } = location.state || {};
 
   useEffect(() => {
     axios
@@ -183,9 +181,9 @@ export const OurServices = () => {
               borderRadius: "8px",
               cursor: "pointer"
             }}
-            onClick={handleBookAppointment}
+            
           >
-            Book Appointment ({selectedServices.length})
+             ({selectedServices.length})
           </button>
         )}
       </div>

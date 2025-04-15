@@ -189,7 +189,7 @@ export const GarageOwnerNavbar = ({ toggleSidebar }) => {
               <li className={`user-nav-item user-nav-services-dropdown ${isServicesActive ? "user-nav-active" : ""}`}>
                 <span className="user-nav-link">Services ▾</span>
                 <ul className="user-nav-services-dropdown-menu">
-                  <li><NavLink to="availableservices" className={({ isActive }) => `user-nav-link ${isActive ? 'user-active-drop-nav-link' : ''}`}>Available Services</NavLink></li>
+                  {/* <li><NavLink to="availableservices" className={({ isActive }) => `user-nav-link ${isActive ? 'user-active-drop-nav-link' : ''}`}>Available Services</NavLink></li> */}
                   <li><NavLink to="garageservices" className={({ isActive }) => `user-nav-link ${isActive ? 'user-active-drop-nav-link' : ''}`}> Services</NavLink></li>
                   <li><NavLink to="addservices" className={({ isActive }) => `user-nav-link ${isActive ? 'user-active-drop-nav-link' : ''}`}>Add Services</NavLink></li>
                 </ul>

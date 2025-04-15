@@ -164,9 +164,9 @@ export const AdminNavbar = ({ toggleSidebar }) => {
       
                 <ul className="user-nav-div-item">
                 <li className="user-nav-item"><NavLink to="" end className={({ isActive }) => `user-nav-link ${isActive ? 'user-active-nav-link' : ''}`}>Home</NavLink></li>
-                <li className="user-nav-item"><NavLink to="/contactus" className={({ isActive }) => `user-nav-link ${isActive ? 'user-active-nav-link' : ''}`}>Contact</NavLink></li>
+                {/* <li className="user-nav-item"><NavLink to="/contactus" className={({ isActive }) => `user-nav-link ${isActive ? 'user-active-nav-link' : ''}`}>Contact</NavLink></li> */}
                 <li className="user-nav-item"><NavLink to="garagelist" className={({ isActive }) => `user-nav-link ${isActive ? 'user-active-nav-link' : ''}`}>GarageList</NavLink></li>
-                <li className="user-nav-item"><NavLink to="services" className={({ isActive }) => `user-nav-link ${isActive ? 'user-active-nav-link' : ''}`}>Services</NavLink></li>
+                {/* <li className="user-nav-item"><NavLink to="services" className={({ isActive }) => `user-nav-link ${isActive ? 'user-active-nav-link' : ''}`}>Services</NavLink></li> */}
                 <li className="user-nav-item"><NavLink to="userspayments" className={({ isActive }) => `user-nav-link ${isActive ? 'user-active-nav-link' : ''}`}>Payments</NavLink></li>
                 <li className="user-nav-item"><NavLink to="registeredusers" className={({ isActive }) => `user-nav-link ${isActive ? 'user-active-nav-link' : ''}`}>UserDetails</NavLink></li>
                 </ul>

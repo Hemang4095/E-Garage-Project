@@ -63,8 +63,7 @@ app.use("/review", reviewRoutes)
 
 mongoose.connect("mongodb://localhost:27017/25_node_internship").then(() => {
   console.log("database connected...")
-}
-)
+})
 
 
 

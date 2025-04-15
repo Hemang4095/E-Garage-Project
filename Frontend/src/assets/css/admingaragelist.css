@@ -1,6 +1,7 @@
 .admin-gara-list-container {
     padding: 20px;
     text-align: center;
+    min-height: 90vh;
   }
   
   .admin-gara-list-title {
@@ -10,7 +11,8 @@
   
   .admin-gara-list-table-wrapper {
     overflow-x: auto;   
-     background: repeating-linear-gradient(159deg, #06182b40, transparent 100px);
+     /* background: repeating-linear-gradient(159deg, #06182b40, transparent 100px); */
+     background: white;
      border-radius: 8px;
 }
   

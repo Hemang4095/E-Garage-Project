@@ -112,7 +112,7 @@ function App() {
               <Route path='mygarages' element={<ViewMyGarages/>}></Route>
               <Route path='updategarage/:id' element={<UpdateMyGarage/>} ></Route>
               <Route path='addservices' element={<AddServices/>}></Route>
-              <Route path='availableservices' element={<AvailableServices/>}></Route>
+              {/* <Route path='availableservices' element={<AvailableServices/>}></Route> */}
               <Route path='updateservice/:id' element={<UpdateServices/>}></Route>
               <Route path='profile' element={<GarageOwnerProfile/>}></Route>
               <Route path='appointments' element={<Appointments/>}></Route>
@@ -124,7 +124,7 @@ function App() {
             <Route path='/user' element={<ProtectedRoute allowedRoles={['user']}><UserSidebar/></ProtectedRoute>}>
               <Route path='' element={<UserDashboard/>}></Route>
               <Route path='profile' element={<UserProfile/>}></Route>
-              <Route path='services' element={<OurServices/>}></Route>
+              {/* <Route path='services' element={<OurServices/>}></Route> */}
               <Route path='addvehicle' element={<AddVehicle/>}></Route>
               <Route path='myvehicles' element={<ViewMyVehicle/>}></Route>
               <Route path='bookappointment' element={<BookAppointment/>}></Route>

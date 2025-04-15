@@ -53,7 +53,7 @@ export const MyAppointments = () => {
               <th>LicensePlate</th>
               <th>Final Price</th>
               <th>Appointment Date</th>
-              <th>Status</th>
+              <th>Service Status</th>
               <th>Paid</th>
               <th>Vehicle Status</th>
               <th>Reason</th>

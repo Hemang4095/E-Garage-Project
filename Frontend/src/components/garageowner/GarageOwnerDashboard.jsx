@@ -57,12 +57,19 @@ export const GarageOwnerDashboard = () => {
   }, {});
 
   // 🎨 Define status colors
+  // const statusColors = {
+  //   pending: "#FFA500",
+  //   booked: "#4CAF50",
+  //   inProgress: "#2196F3",
+  //   completed: "#9C27B0", 
+  //   rejected: "#F44336",
+  // };
   const statusColors = {
-    pending: "#FFA500",
-    booked: "#4CAF50",
-    inProgress: "#2196F3",
-    completed: "#9C27B0", 
-    rejected: "#F44336",
+    pending: "#4FC3F7",
+    booked: "#81D4FA",
+    inProgress: "#64B5F6",
+    completed: "#42A5F5",
+    rejected: "#2196F3",   
   };
 
   const pieData = Object.entries(statusCount).map(([status, count], index) => ({
