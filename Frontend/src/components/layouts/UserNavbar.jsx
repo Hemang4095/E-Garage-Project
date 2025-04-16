@@ -13,6 +13,7 @@ export const UserNavbar = ({ toggleSidebar }) => {
 
   const location = useLocation();
   const isVehiclesActive = location.pathname.includes("myvehicles") || location.pathname.includes("addvehicle");
+  const isAppointmentActive = location.pathname.includes("myappointments") || location.pathname.includes("userpayments");
 
   // const { user, setUser } = useUser();
   const [user, setUser] = useState(null);
@@ -177,24 +178,24 @@ export const UserNavbar = ({ toggleSidebar }) => {
             </li>
 
             <ul className="user-nav-div-item">
-              <li className="user-nav-item"><NavLink to="" className={({ isActive }) => `user-nav-link ${isActive ? 'user-active-nav-link' : ''}`}>Home</NavLink></li>
-              <li className="user-nav-item"><NavLink to="/contactus" className={({ isActive }) => `user-nav-link ${isActive ? 'user-active-nav-link' : ''}`}>Contact</NavLink></li>
-              <li className={`user-nav-item user-nav-services-dropdown ${isVehiclesActive ? "user-nav-active" : ""}`}>
+              <li className="user-nav-item"><NavLink to="" end className={({ isActive }) => `user-nav-link ${isActive ? 'user-active-nav-link' : ''}`}>Home</NavLink></li>
+              <li className="user-nav-item"><NavLink to="/contactus"  className={({ isActive }) => `user-nav-link ${isActive ? 'user-active-nav-link' : ''}`}>Contact</NavLink></li>
+              <li  className={`user-nav-item user-nav-services-dropdown ${isAppointmentActive ? "user-nav-active" : ""}`}>
               <span className="user-nav-link">Appointments ▾</span> 
-              <ul className="user-nav-services-dropdown-menu">
-              <li className="user-nav-item"><NavLink to="myappointments" className={({ isActive }) => `user-nav-link ${isActive ? 'user-active-nav-link' : ''}`}>My Appointments</NavLink></li>
-              <li className="user-nav-item"><NavLink to="userpayments" className={({ isActive }) => `user-nav-link ${isActive ? 'user-active-nav-link' : ''}`}>Payments</NavLink></li>
+              <ul  className="user-nav-services-dropdown-menu">
+              <li className="user-nav-item"><NavLink to="myappointments"  className={({ isActive }) => `user-nav-link ${isActive ? 'user-active-nav-link' : ''}`}>My Appointments</NavLink></li>
+              <li className="user-nav-item"><NavLink to="userpayments"  className={({ isActive }) => `user-nav-link ${isActive ? 'user-active-nav-link' : ''}`}>Payments</NavLink></li>
               </ul>
               </li>
               <li className={`user-nav-item user-nav-services-dropdown ${isVehiclesActive ? "user-nav-active" : ""}`}>
                 <span className="user-nav-link">Vehicles ▾</span> 
-                <ul className="user-nav-services-dropdown-menu">
-                  <li className="user-nav-item"><NavLink to="myvehicles" className={({ isActive }) => `user-nav-link ${isActive ? 'user-active-drop-nav-link' : ''}`}>My Vehicles</NavLink></li>
-                  <li className="user-nav-item"><NavLink to="addvehicle" className={({ isActive }) => `user-nav-link ${isActive ? 'user-active-drop-nav-link' : ''}`}>Add Vehicle</NavLink></li>
+                <ul  className="user-nav-services-dropdown-menu">
+                  <li className="user-nav-item"><NavLink to="myvehicles"  className={({ isActive }) => `user-nav-link ${isActive ? 'user-active-nav-link' : ''}`}>My Vehicles</NavLink></li>
+                  <li className="user-nav-item"><NavLink to="addvehicle"  className={({ isActive }) => `user-nav-link ${isActive ? 'user-active-nav-link' : ''}`}>Add Vehicle</NavLink></li>
                 </ul>
               </li>
               {/* <li className="user-nav-item"><NavLink to="services" className={({ isActive }) => `user-nav-link ${isActive ? 'user-active-nav-link' : ''}`}>Our Services</NavLink></li> */}
-              <li className="user-nav-item"><NavLink to="garages" className={({ isActive }) => `user-nav-link ${isActive ? 'user-active-nav-link' : ''}`}>Garages</NavLink></li>
+              <li className="user-nav-item"><NavLink to="garages"  className={({ isActive }) => `user-nav-link ${isActive ? 'user-active-nav-link' : ''}`}>Garages</NavLink></li>
             </ul>
 
           </ul>

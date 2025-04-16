@@ -299,34 +299,6 @@
     margin-bottom: 8px;
   }
   
-  /* .user-nav-role {
-    color: #80a5ff;
-    font-size: 14px;
-    margin: 4px 0;
-  } */
-  
-  /* .user-nav-member {
-    font-size: 12px;
-    opacity: 0.75;
-  }
-  
-  .user-nav-dropdown-body {
-    background: white;
-    display: flex;
-    justify-content: space-around;
-    padding: 10px;
-  }
-  
-  .user-nav-drop-link {
-    color: rgb(13 75 129);
-    font-weight: 600;
-    text-decoration: none;
-  }
-  
-  .user-nav-drop-link:hover {
-    text-decoration: underline;
-  } */
-  
   .user-nav-dropdown-footer {
     text-align: center;
     padding: 5px 0 12px 0;

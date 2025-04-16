@@ -43,6 +43,13 @@
 
 
 
+.header_section{
+  position: fixed;
+  top: 0;
+  z-index: 1100;
+  width: 100vw;
+}
+
 /* Landing Page Sections */
 
 .landing-section_2 {

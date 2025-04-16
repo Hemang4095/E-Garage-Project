@@ -9,9 +9,10 @@ import { AnimatePresence, motion } from "framer-motion";
 export const GarageOwnerNavbar = ({ toggleSidebar }) => {
 
   const location = useLocation();
+  const isAppointmentActive = location.pathname.includes("appointments") || location.pathname.includes("garageuserpayments");
   const isGarageActive = location.pathname.includes("mygarages") || location.pathname.includes("addgarage");
 
-  const isServicesActive = location.pathname.includes("availableservices") || location.pathname.includes("addservices");
+  const isServicesActive = location.pathname.includes("availableservices") || location.pathname.includes("addservices") || location.pathname.includes("garageservices");
 
   const [user, setUser] = useState(null);
   const [isFullscreen, setIsFullscreen] = useState(false);
@@ -171,11 +172,11 @@ export const GarageOwnerNavbar = ({ toggleSidebar }) => {
             <ul className="user-nav-div-item"> 
               <li className="user-nav-item"><NavLink to="" end className={({ isActive }) => `user-nav-link ${isActive ? 'user-active-nav-link' : ''}`}>Home</NavLink></li>
               <li className="user-nav-item"><NavLink to="/contactus"  className={({ isActive }) => `user-nav-link ${isActive ? 'user-active-nav-link' : ''}`}>Contact</NavLink></li>
-              <li className={`user-nav-item user-nav-garage-dropdown ${isGarageActive ? "user-nav-active" : ""}`}>
+              <li className={`user-nav-item user-nav-garage-dropdown ${isAppointmentActive ? "user-nav-active" : ""}`}>
                 <span className="user-nav-link">Appointments ▾</span>
                 <ul className="user-nav-garage-dropdown-menu">
-              <li className="user-nav-item"><NavLink to="appointments" className={({ isActive }) => `user-nav-link ${isActive ? 'user-active-nav-link' : ''}`}>Appointments</NavLink></li>
-              <li className="user-nav-item"><NavLink to="garageuserpayments" className={({ isActive }) => `user-nav-link ${isActive ? 'user-active-nav-link' : ''}`}>Payments</NavLink></li>
+              <li className="user-nav-item"><NavLink to="appointments" className={({ isActive }) => `user-nav-link ${isActive ? 'user-active-drop-nav-link' : ''}`}>Appointments</NavLink></li>
+              <li className="user-nav-item"><NavLink to="garageuserpayments" className={({ isActive }) => `user-nav-link ${isActive ? 'user-active-drop-nav-link' : ''}`}>Payments</NavLink></li>
               </ul>
               </li>
               
@@ -287,7 +288,7 @@ export const GarageOwnerNavbar = ({ toggleSidebar }) => {
                           </Link>
                         </div>
                         <div className="col-6 text-center">
-                          <Link to="services" className="dropdown-item py-2 user-nav-drop-serv-link">
+                          <Link to="garageservices" className="dropdown-item py-2 user-nav-drop-serv-link">
                             Services
                           </Link>
                         </div>
