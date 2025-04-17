@@ -11,7 +11,7 @@ export const GarageOwnerDashboard = () => {
 
   const [appointments, setAppointments] = useState([]);
   const [appointmentsCount, setAppointmentsCount] = useState(0);
-  const [servicesCount,setServicesCount] = useState(0)
+  const [servicesCount, setServicesCount] = useState(0)
   const [totalRevenue, setTotalRevenue] = useState(0);
   const userId = localStorage.getItem("id");
 
@@ -26,13 +26,13 @@ export const GarageOwnerDashboard = () => {
 
   const fetchAppointments = async () => {
     try {
-      
+
       const response = await axios.get(`/appointment/getappointmentbygarageowneruserid/${userId}`);
       setAppointments(response.data.data);
       setAppointmentsCount(response.data.data.length)
     } catch (error) {
       console.error("Error fetching appointments:", error);
-    } 
+    }
   };
 
   const fetchServices = async () => {
@@ -41,7 +41,7 @@ export const GarageOwnerDashboard = () => {
       setServicesCount(response.data.data.length)
     } catch (error) {
       console.error("Error fetching appointments:", error);
-    } 
+    }
   };
 
   useEffect(() => {
@@ -69,7 +69,7 @@ export const GarageOwnerDashboard = () => {
     booked: "#81D4FA",
     inProgress: "#64B5F6",
     completed: "#42A5F5",
-    rejected: "#2196F3",   
+    rejected: "#2196F3",
   };
 
   const pieData = Object.entries(statusCount).map(([status, count], index) => ({
@@ -81,8 +81,8 @@ export const GarageOwnerDashboard = () => {
 
 
   return (
-    <div className="" style={{minHeight:"80%", padding:"0px 8px"}} >
-      
+    <div className="" style={{ minHeight: "80%", padding: "0px 8px" }} >
+
       <div className="garown-dash-header">
         <div className="garown-dash-container">
           <div className="garown-dash-row">
@@ -176,28 +176,28 @@ export const GarageOwnerDashboard = () => {
 
 
 
-<h2 className="own-appoint-title">Garage Owner's Appointments</h2>
 
-{appointments.length > 0 && (
-  <div style={{ marginBottom: "30px", display: "flex", justifyContent: "center" }}>
-    <div>
-      <Typography variant="h6" gutterBottom align="center">
-        Appointment Status Distribution
-      </Typography>
-      <PieChart
-        series={[
-          {
-            data: pieData,
-            highlightScope: { faded: "global", highlighted: "item" },
-            faded: { additionalRadius: -10, color: "gray" },
-          },
-        ]}
-        width={500}
-        height={300}
-      />
-    </div>
-  </div>
-)}
+      {appointments.length > 0 && (
+        <div style={{ marginBottom: "30px", display: "flex", justifyContent: "center" }}>
+          <div className='garageown-dash-piecharts'>
+          <h2 className="own-appoint-title">Garage Owner's Appointments</h2>
+            <Typography variant="h6" gutterBottom align="center">
+              Appointment Status Distribution
+            </Typography>
+            <PieChart
+              series={[
+                {
+                  data: pieData,
+                  highlightScope: { faded: "global", highlighted: "item" },
+                  faded: { additionalRadius: -10, color: "gray" },
+                },
+              ]}
+              width={500}
+              height={300}
+            />
+          </div>
+        </div>
+      )}
 
 
     </div>

@@ -291,7 +291,8 @@ export const SignUp = () => {
                 <div className="login-signup-input-box">
                   <select {...register("role", validationSchema.roleValidator)}>
                     <optgroup label='Select your role:'>
-                      {roles.map((role) => (
+                      {roles.filter((role) => role.name.toLowerCase() !== "admin")
+                      .map((role) => (
                         <option key={role._id} value={role.name}>
                           {role.name}
                         </option>

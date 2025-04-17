@@ -47,8 +47,21 @@
 }
 
 .garageown-paym-page-btn.active {
-  background-color: #007bff;
+  background-color: #1e4773;
   color: white;
+  border-radius: 8px;
+  border: none;
 }
 
+.garageown-paym-status-td{
+  text-align: center;
+}
+
+.garageown-paym-status{
+  background-color: #7bcc7b;
+  color: white;
+  padding: 4px 12px;
+  border-radius: 23px;
+  
+}
   

@@ -76,7 +76,7 @@ export const GarageUserPayments = () => {
                   <td>{appt?.serviceId?.map(s => s.name).join(", ")}</td>
                   <td>{appt?.vehicleId?.make} {appt?.vehicleId?.model}</td>
                   <td>₹{(payment.amount / 100).toFixed(2)}</td>
-                  <td style={{ color: payment.status === "success" ? "green" : "red" }}>{payment.status}</td>
+                  <td style={{ color: payment.status === "success" ? "green" : "red" }} className="garageown-paym-status-td"><span className="garageown-paym-status">{payment.status}</span></td>
                   <td>{new Date(payment.createdAt).toLocaleString()}</td>
                 </tr>
               );
