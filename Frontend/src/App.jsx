@@ -50,6 +50,8 @@ import UsersPayments from './components/admin/UsersPayments'
 import { GarageUserPayments } from './components/garageowner/GarageUserPayments'
 import { RegisteredUsers } from './components/admin/RegisteredUsers'
 import { AddReview } from './components/user/AddReview'
+import ActiveBookings from './components/admin/ActiveBookings'
+import { AddLocations } from './components/admin/AddLocations'
 
 
 
@@ -102,6 +104,8 @@ function App() {
               <Route path='profile' element={<AdminProfile/>}></Route>
               <Route path='userspayments' element={<UsersPayments/>}></Route>
               <Route path='registeredusers' element={<RegisteredUsers/>}></Route>
+              <Route path='activebookings' element={<ActiveBookings/>}></Route>
+              <Route path='addlocations' element={<AddLocations/>}></Route>
             </Route>
 
 

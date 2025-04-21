@@ -88,7 +88,11 @@ export const AdminDashboard = () => {
     try {
       const response = await axios.get(`/appointment/getallappointments`);
       setAppointments(response.data.data);
-      setAppointmentsCount(response.data.data.length)
+      // setAppointmentsCount(response.data.data.length)
+      const active = response.data.data.filter(item =>
+        ["pending", "booked", "inProgress", "rescheduled"].includes(item.status)
+      );
+      setAppointmentsCount(active.length);
     } catch (error) {
       console.error("Error fetching appointments:", error);
     }
@@ -136,13 +140,13 @@ export const AdminDashboard = () => {
     return acc;
   }, {});
 
-  
+
   const statusColors = {
     pending: "#4FC3F7",
     booked: "#81D4FA",
     inProgress: "#64B5F6",
     completed: "#42A5F5",
-    rejected: "#2196F3",   
+    rejected: "#2196F3",
   };
   // const statusColors = {
   //   pending: "#BBDEFB",
@@ -179,7 +183,7 @@ export const AdminDashboard = () => {
               <div className="admin-dash-col-right">
                 <ol className="admin-dash-breadcrumb">
                   <li className="admin-dash-breadcrumb-item">
-                    <a href="#">Home</a>
+                    <Link to="#">Home</Link>
                   </li>
                   <li className="admin-dash-breadcrumb-item active">Admin Dashboard</li>
                 </ol>
@@ -240,7 +244,7 @@ export const AdminDashboard = () => {
                     <line x1="3" y1="10" x2="21" y2="10" />
                   </svg>
                 </div>
-                <Link to="" className="admin-dash-footer">More info</Link>
+                <Link to="activebookings" className="admin-dash-footer">More info</Link>
               </div>
             </div>
 
@@ -267,7 +271,7 @@ export const AdminDashboard = () => {
       </div>
 
 
-      <div style={{ marginBottom: "30px", display: "flex", justifyContent: "space-around", alignItems:"center" }}>
+      <div style={{ marginBottom: "30px", display: "flex", justifyContent: "space-around", alignItems: "center" }}>
         {appointments.length > 0 && (
           <div className='admin-dash-piecharts'>
             <h2 className="own-appoint-title">Booking Appointments</h2>
@@ -288,39 +292,39 @@ export const AdminDashboard = () => {
           </div>
         )}
 
-<div className="admin-userchart-container">
-      <h3 className="admin-userchart-title">Active Users Overview</h3>
-      <div className="admin-userchart-content">
-        <RechartsPieChart width={480} height={350}>
-          <Pie
-            data={data}
-            cx="50%"
-            cy="50%"
-            labelLine={false}
-            label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
-            outerRadius={130}
-            dataKey="value"
-          >
-            {data.map((_, index) => (
-              <Cell key={`cell-${index}`} fill={COLORS[index]} />
-            ))}
-          </Pie>
-          <Tooltip className="admin-userchart-tooltip" />
-        </RechartsPieChart>
+        <div className="admin-userchart-container">
+          <h3 className="admin-userchart-title">Active Users Overview</h3>
+          <div className="admin-userchart-content">
+            <RechartsPieChart width={480} height={350}>
+              <Pie
+                data={data}
+                cx="50%"
+                cy="50%"
+                labelLine={false}
+                label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
+                outerRadius={130}
+                dataKey="value"
+              >
+                {data.map((_, index) => (
+                  <Cell key={`cell-${index}`} fill={COLORS[index]} />
+                ))}
+              </Pie>
+              <Tooltip className="admin-userchart-tooltip" />
+            </RechartsPieChart>
 
-        <div className="admin-userchart-legend">
-          {data.map((entry, index) => (
-            <div key={index} className="admin-userchart-legend-item">
-              <span
-                className="admin-userchart-legend-color"
-                style={{ backgroundColor: COLORS[index] }}
-              />
-              {entry.name}
+            <div className="admin-userchart-legend">
+              {data.map((entry, index) => (
+                <div key={index} className="admin-userchart-legend-item">
+                  <span
+                    className="admin-userchart-legend-color"
+                    style={{ backgroundColor: COLORS[index] }}
+                  />
+                  {entry.name}
+                </div>
+              ))}
             </div>
-          ))}
+          </div>
         </div>
-      </div>
-    </div>
 
       </div>
 

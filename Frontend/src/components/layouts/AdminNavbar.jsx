@@ -169,6 +169,8 @@ export const AdminNavbar = ({ toggleSidebar }) => {
                 {/* <li className="user-nav-item"><NavLink to="services" className={({ isActive }) => `user-nav-link ${isActive ? 'user-active-nav-link' : ''}`}>Services</NavLink></li> */}
                 <li className="user-nav-item"><NavLink to="userspayments" className={({ isActive }) => `user-nav-link ${isActive ? 'user-active-nav-link' : ''}`}>Payments</NavLink></li>
                 <li className="user-nav-item"><NavLink to="registeredusers" className={({ isActive }) => `user-nav-link ${isActive ? 'user-active-nav-link' : ''}`}>UserDetails</NavLink></li>
+                <li className="user-nav-item"><NavLink to="activebookings" className={({ isActive }) => `user-nav-link ${isActive ? 'user-active-nav-link' : ''}`}>Bookings</NavLink></li>
+                <li className="user-nav-item"><NavLink to="addlocations" className={({ isActive }) => `user-nav-link ${isActive ? 'user-active-nav-link' : ''}`}>Add Locations</NavLink></li>
                 </ul>
                
               </ul>

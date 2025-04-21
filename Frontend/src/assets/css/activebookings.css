@@ -1,0 +1,131 @@
+
+.admin-active-book-container {
+    margin: 20px;
+    padding: 20px;
+    background-color: #f0f8ff; 
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+
+.admin-active-book-title {
+    font-size: 24px;
+    font-weight: 600;
+    color: #1E3A8A; 
+    margin-bottom: 20px;
+}
+
+
+.admin-active-book-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.admin-active-book-table th,
+.admin-active-book-table td {
+    padding: 12px 15px;
+    text-align: left;
+    font-size: 14px;
+    color: #333;
+    border-bottom: 1px solid #ddd;
+}
+
+.admin-active-book-table th {
+    background-color: #1E3A8A; 
+    color: white;
+    font-weight: bold;
+}
+
+.admin-active-book-table td {
+    background-color: #ffffff;
+}
+
+
+.admin-active-book-status {
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+
+.admin-active-book-pending {
+    background-color: #60a5fa; 
+    color: white;
+}
+
+.admin-active-book-booked {
+    background-color: #1E40AF; 
+    color: white;
+}
+
+.admin-active-book-inProgress {
+    background-color: #3b82f6; 
+    color: white;
+}
+
+.admin-active-book-rescheduled {
+    background-color: #93c5fd; 
+    color: white;
+}
+
+
+.admin-active-book-delete-btn {
+    background-color: #ef4444; 
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.admin-active-book-delete-btn:hover {
+    background-color: #dc2626; 
+}
+
+
+.admin-active-book-no-data {
+    text-align: center;
+    font-size: 16px;
+    color: #777;
+    padding: 20px;
+}
+
+
+.admin-app-book-pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    gap: 8px;
+}
+
+.admin-book-pagination-button {
+    background-color: #e0f2fe; 
+    /* border: 1px solid #a5b4fc;  */
+    border: none;
+
+    padding: 6px 12px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    border-radius: 4px;
+}
+
+.admin-book-pagination-button:hover {
+    background-color: #bfdbfe; 
+}
+
+.admin-book-pagination-button.active {
+    background-color: #1D4ED8;
+    color: white;
+    /* border-color: #1D4ED8;  */
+    border: none;
+}
+
+.admin-book-pagination-button:disabled {
+    cursor: not-allowed;
+    background-color: #e0e0e0;
+    border-color: #e0e0e0;
+}
