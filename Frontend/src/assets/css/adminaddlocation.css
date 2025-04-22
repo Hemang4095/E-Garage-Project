@@ -1,0 +1,93 @@
+.admin-addloc-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #1e2968;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  }
+  
+  .admin-addloc-title {
+    text-align: center;
+    margin-bottom: 20px; 
+    font-size: 26px;
+    font-weight: bold;
+    color: #ffffff;
+  }
+  
+  .admin-addloc-section {
+    margin-bottom: 25px;
+  }
+
+  .admin-addloc-section h4{
+    color: white;
+  }
+  
+  .admin-addloc-input-group,
+  .admin-addloc-area-group {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+  }
+  
+  .admin-addloc-input {
+    flex: 1;
+    min-width: 180px;
+    padding: 10px 14px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 15px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .admin-addloc-input:focus {
+    border-color: #0077cc;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 119, 204, 0.1);
+  }
+  
+  .admin-addloc-select {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 15px;
+    background-color: #ffffff;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .admin-addloc-select:focus {
+    border-color: #0077cc;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 119, 204, 0.1);
+  }
+  
+  .admin-addloc-button {
+    background-color: #808ed6; /* #4f66da */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .admin-addloc-button:hover {
+    background-color: #515ea0; /*#3042a0*/
+    transform: translateY(-1px);
+  }
+  
+  .admin-addloc-button:active {
+    transform: translateY(0);
+  }
+  
+  .addloc-area-name {
+    flex: 2;
+  }
+  
+  .addloc-pincode {
+    flex: 1;
+  }
+  

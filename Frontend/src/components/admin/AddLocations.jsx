@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import "../../assets/css/adminaddlocation.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 
 export const AddLocations = () => {
   const [states, setStates] = useState([]);
@@ -15,8 +19,14 @@ export const AddLocations = () => {
   const [selectedCityId, setSelectedCityId] = useState("");
 
   const showAlert = (message) => {
-    alert(message);
+    toast.success(message, {
+      position: "top-right",
+      autoClose: 3000,
+      pauseOnHover: true,
+      draggable: true,
+    });
   };
+  
 
   useEffect(() => {
     axios
@@ -92,52 +102,28 @@ export const AddLocations = () => {
   };
 
   return (
-    <div
-      style={{
-        padding: "30px",
-        maxWidth: "800px",
-        margin: "30px auto",
-        boxShadow: "0 0 12px rgba(0,0,0,0.1)",
-        borderRadius: "12px",
-        backgroundColor: "rgb(220, 230, 224)",
-        fontFamily: "Arial, sans-serif",
-      }}
-    >
-      <h2 style={{ textAlign: "center", marginBottom: "30px" }}>
-        Area Management
-      </h2>
+    <div className="admin-addloc-container">
+      <h2 className="admin-addloc-title">Area Management</h2>
 
-      {/* Add State */}
-      <div style={{ marginBottom: "25px" }}>
+      <div className="admin-addloc-section">
         <h4>Add State</h4>
-        <div style={{ display: "flex", gap: "10px" }}>
+        <div className="admin-addloc-input-group">
           <input
-            style={{ padding: "10px", flex: 1, borderRadius: "6px", border: "1px solid #ccc" }}
+            className="admin-addloc-input"
             value={newState}
             onChange={(e) => setNewState(e.target.value)}
             placeholder="Enter state name"
           />
-          <button
-            onClick={addState}
-            style={{
-              padding: "10px 16px",
-              backgroundColor: "rgb(113, 177, 251)",
-              color: "#fff",
-              border: "none",
-              borderRadius: "6px",
-              cursor: "pointer",
-            }}
-          >
+          <button className="admin-addloc-button" onClick={addState}>
             Add State
           </button>
         </div>
       </div>
 
-      {/* Select State */}
-      <div style={{ marginBottom: "25px" }}>
+      <div className="admin-addloc-section">
         <h4>Select State</h4>
         <select
-          style={{ padding: "10px", width: "100%", borderRadius: "6px", border: "1px solid #ccc" }}
+          className="admin-addloc-select"
           value={selectedStateId}
           onChange={(e) => {
             setSelectedStateId(e.target.value);
@@ -155,37 +141,25 @@ export const AddLocations = () => {
         </select>
       </div>
 
-      {/* Add City */}
-      <div style={{ marginBottom: "25px" }}>
+      <div className="admin-addloc-section">
         <h4>Add City</h4>
-        <div style={{ display: "flex", gap: "10px" }}>
+        <div className="admin-addloc-input-group">
           <input
-            style={{ padding: "10px", flex: 1, borderRadius: "6px", border: "1px solid #ccc" }}
+            className="admin-addloc-input"
             value={newCity}
             onChange={(e) => setNewCity(e.target.value)}
             placeholder="Enter city name"
           />
-          <button
-            onClick={addCity}
-            style={{
-              padding: "10px 16px",
-              backgroundColor: "rgb(107, 172, 246)",
-              color: "#fff",
-              border: "none",
-              borderRadius: "6px",
-              cursor: "pointer",
-            }}
-          >
+          <button className="admin-addloc-button" onClick={addCity}>
             Add City
           </button>
         </div>
       </div>
 
-      {/* Select City */}
-      <div style={{ marginBottom: "25px" }}>
+      <div className="admin-addloc-section">
         <h4>Select City</h4>
         <select
-          style={{ padding: "10px", width: "100%", borderRadius: "6px", border: "1px solid #ccc" }}
+          className="admin-addloc-select"
           value={selectedCityId}
           onChange={(e) => {
             setSelectedCityId(e.target.value);
@@ -195,43 +169,33 @@ export const AddLocations = () => {
           <option value="">Select City</option>
           {cities.map((c) => (
             <option key={c._id} value={c._id}>
-             {c.name}
+              {c.name}
             </option>
           ))}
         </select>
       </div>
 
-      {/* Add Area */}
-      <div style={{ marginBottom: "25px" }}>
+      <div className="admin-addloc-section">
         <h4>Add Area</h4>
-        <div style={{ display: "flex", gap: "10px", flexWrap: "wrap" }}>
+        <div className="admin-addloc-area-group">
           <input
-            style={{ padding: "10px", flex: "1 1 60%", borderRadius: "6px", border: "1px solid #ccc" }}
+            className="admin-addloc-input addloc-area-name"
             value={newArea}
             onChange={(e) => setNewArea(e.target.value)}
             placeholder="Enter area name"
           />
           <input
-            style={{ padding: "10px", flex: "1 1 30%", borderRadius: "6px", border: "1px solid #ccc" }}
+            className="admin-addloc-input addloc-pincode"
             value={newPincode}
             onChange={(e) => setNewPincode(e.target.value)}
             placeholder="Enter pincode"
           />
-          <button
-            onClick={addArea}
-            style={{
-              padding: "10px 16px",
-              backgroundColor: "rgb(101, 173, 255)",
-              color: "#fff",
-              border: "none",
-              borderRadius: "6px",
-              cursor: "pointer",
-            }}
-          >
+          <button className="admin-addloc-button" onClick={addArea}>
             Add Area
           </button>
         </div>
       </div>
-  </div>
-);
+      <ToastContainer />
+    </div>
+  );
 };
