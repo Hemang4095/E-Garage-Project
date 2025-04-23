@@ -243,6 +243,20 @@ const addUserWithFile = async (req, res) => {
   
         // Store data in the database
         const savedUser = await userModel.create(req.body);
+
+        //mail send 
+
+        const emailSubject = "Welcome to E-Garage!";
+        const emailText = `Hi ${savedUser.name || "User"}, your account has been successfully created.`;
+        const emailHtml = `
+          <h2>Welcome to E-Garage! 🚗</h2>
+          <p>Hi <strong>${savedUser.name || "User"}</strong>,</p>
+          <p>Your account has been successfully registered.</p>
+          <p>Thanks for joining us!</p>
+        `;
+        await mailUtil.sendingMail(savedUser.email, emailSubject, emailText, emailHtml);
+
+
   
         res.status(200).json({
           message: "User registered successfully ✅",
@@ -285,7 +299,7 @@ const addUserWithFile = async (req, res) => {
       }
     });
   }; 
-  
+   
 
 
   const toggleUserStatus = async (req, res) => {

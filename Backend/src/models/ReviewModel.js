@@ -7,7 +7,7 @@ const reviewSchema = new Schema({
         ref: "users",
         required: true
     },
-    garageId: {
+    garageId: { 
         type: Schema.Types.ObjectId,
         ref: "garages",
         required: true

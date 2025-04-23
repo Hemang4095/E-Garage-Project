@@ -2,12 +2,15 @@ import { useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
+import { FaEdit, FaTrash } from "react-icons/fa";
+
 
 export const AddReview = () => {
   const location = useLocation();
   const { selectedGarage } = location.state || {};
   const { garageId } = useParams();
   const navigate = useNavigate();
+  const userId = localStorage.getItem("id");
 
   const [rating, setRating] = useState(0);
   const [hover, setHover] = useState(0);
@@ -15,6 +18,9 @@ export const AddReview = () => {
   const [reviews, setReviews] = useState([]);
   const [averageRating, setAverageRating] = useState(null);
   const [loadingReviews, setLoadingReviews] = useState(true);
+  const [editingReviewId, setEditingReviewId] = useState(null);
+  const [showAllReviews, setShowAllReviews] = useState(false);
+
 
   const fetchReviews = async () => {
     try {
@@ -39,6 +45,36 @@ export const AddReview = () => {
     fetchReviews();
   }, [garageId]);
 
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   if (!rating || !comment) {
+  //     toast.warning("Please fill out all fields.");
+  //     return;
+  //   }
+
+  //   const userId = localStorage.getItem("id");
+  //   if (!userId) {
+  //     toast.error("User not logged in. Please log in to submit a review.");
+  //     return;
+  //   }
+
+  //   try {
+  //     await axios.post(`/review/addreview/${garageId}`, {
+  //       userId,
+  //       rating,
+  //       comment
+  //     });
+
+  //     toast.success("Review added successfully");
+  //     setRating(0);
+  //     setComment("");
+  //     fetchReviews();
+  //   } catch (error) {
+  //     console.error("Error adding review:", error);
+  //     toast.error("Failed to add review");
+  //   }
+  // };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!rating || !comment) {
@@ -53,21 +89,53 @@ export const AddReview = () => {
     }
 
     try {
-      await axios.post(`/review/addreview/${garageId}`, {
-        userId,
-        rating,
-        comment
-      });
+      if (editingReviewId) {
+        await axios.put(`/review/updatereview/${editingReviewId}`, {
+          userId,
+          rating,
+          comment
+        });
+        toast.success("Review updated!");
+        setEditingReviewId(null);  // Clear the editing state after update
+      } else {
+        await axios.post(`/review/addreview/${garageId}`, {
+          userId,
+          rating,
+          comment
+        });
+        toast.success("Review added successfully");
+      }
 
-      toast.success("Review added successfully");
       setRating(0);
       setComment("");
       fetchReviews();
+
     } catch (error) {
-      console.error("Error adding review:", error);
-      toast.error("Failed to add review");
+      console.error("Error submitting review:", error);
+      toast.error(editingReviewId ? "Failed to update review." : "Failed to add review.");
     }
   };
+
+
+  const handleDelete = async (reviewId) => {
+    if (!window.confirm("Are you sure you want to delete this review?")) return;
+  
+    const userId = localStorage.getItem("id");  // Get userId from localStorage
+  
+    try {
+      await axios.delete(`/review/deletereviewbyuser/${reviewId}`, {
+        params: { userId: userId }  // Send userId as query parameter
+      });
+      toast.success("Review deleted!");
+      fetchReviews();  // Refresh the reviews
+    } catch (error) {
+      console.error("Error deleting review:", error);
+      toast.error("Failed to delete review");
+    }
+  };
+  
+
+
 
   if (!selectedGarage?._id) {
     return (
@@ -85,18 +153,18 @@ export const AddReview = () => {
         backgroundColor: "rgb(221, 221, 223)"
       }}
     >
-     <ToastContainer
-      position="top-right"
-      autoClose={1000}
-      hideProgressBar={false}
-      newestOnTop={false}
-      closeOnClick
-      rtl={false}
-      pauseOnFocusLoss
-      draggable
-      pauseOnHover
-      theme="dark"
-    />
+      <ToastContainer
+        position="top-right"
+        autoClose={1000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
       <div>
         <button
           onClick={() => navigate(-1)}
@@ -213,9 +281,7 @@ export const AddReview = () => {
           <div
             style={{ display: "flex", flexDirection: "column", gap: "1rem" }}
           >
-            {[...reviews]
-              .slice(-5)
-              .reverse()
+            {(showAllReviews ? reviews : [...reviews].slice(-5).reverse())
               .map((review, index) => (
                 <div
                   key={index}
@@ -235,7 +301,7 @@ export const AddReview = () => {
                     }}
                   >
                     <img
-                      src={review.userId?.userURL ||"https://via.placeholder.com/40"}
+                      src={review.userId?.userURL || "https://via.placeholder.com/40"}
                       alt={review.userId?.firstname}
                       style={{
                         width: "40px",
@@ -264,8 +330,48 @@ export const AddReview = () => {
                   >
                     {new Date(review.createdAt).toLocaleString()}
                   </p>
+
+                  {review.userId?._id === userId && (
+                    <div style={{ display: "flex", gap: "0.5rem" }}>
+                      <FaEdit
+                        onClick={() => {
+                          setRating(Number(review.rating));
+                          setComment(review.comment);
+                          setEditingReviewId(review._id);
+                          
+                        }}
+                        style={{ cursor: "pointer", color: "blue" }}
+                      />
+                      <FaTrash
+                        onClick={() => handleDelete(review._id)}
+                        style={{ cursor: "pointer", color: "red" }}
+                      />
+                    </div>
+                  )}
+
+
+
                 </div>
               ))}
+
+            {reviews.length > 5 && (
+              <button
+                onClick={() => setShowAllReviews(!showAllReviews)}
+                style={{
+                  margin: "1rem auto",
+                  display: "block",
+                  padding: "0.5rem 1rem",
+                  backgroundColor: "#1a2a6a",
+                  color: "white",
+                  border: "none",
+                  borderRadius: "5px",
+                  cursor: "pointer"
+                }}
+              >
+                {showAllReviews ? "Show Less" : "Show All Reviews"}
+              </button>
+            )}
+
           </div>
         )}
       </div>

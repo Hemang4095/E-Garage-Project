@@ -4,7 +4,7 @@ const mailer = require("nodemailer");
 
 const sendingMail = async (to,subject,text, html = null) => {
     
-    const transporter = mailer.createTransport({
+    const transporter = mailer.createTransport({ 
         service: "gmail",
         auth:{
             user:process.env.EMAIL_USER,

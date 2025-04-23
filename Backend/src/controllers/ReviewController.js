@@ -130,6 +130,46 @@ const getAverageRating = async (req, res) => {
   
   
 
+  const updateReview =  async (req, res) => {
+    const { userId, rating, comment } = req.body;
+  
+    try {
+      const review = await reviewModel.findById(req.params.reviewId);
+  
+      if (!review) return res.status(404).json({ error: "Review not found" });
+      if (review.userId.toString() !== userId)
+        return res.status(403).json({ error: "Unauthorized" });
+  
+      review.rating = rating;
+      review.comment = comment;
+      await review.save();
+  
+      res.status(200).json({ message: "Review updated", review });
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ error: "Failed to update review" });
+    }
+  };
+  
+
+  const deleteReviewByUserId = async (req, res) => {
+    const { userId } = req.query;
+  
+    try {
+      const review = await reviewModel.findById(req.params.reviewId);
+  
+      if (!review) return res.status(404).json({ error: "Review not found" });
+      if (review.userId.toString() !== userId)
+        return res.status(403).json({ error: "Unauthorized" });
+  
+      await review.deleteOne();
+      res.status(200).json({ message: "Review deleted" });
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ error: "Failed to delete review"});
+    }
+  };
+
 
 
 module.exports = {
@@ -138,5 +178,7 @@ module.exports = {
     getReviewsByService,
     deleteReviewById,
     createReview,
-    getAverageRating
+    getAverageRating,
+    updateReview,
+    deleteReviewByUserId
 };

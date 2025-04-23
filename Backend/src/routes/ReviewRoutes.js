@@ -8,6 +8,8 @@ routes.get("/getreviewbyservice/:serviceId", reviewController.getReviewsByServic
 routes.delete("/deletereviewby/:id", reviewController.deleteReviewById);
 routes.post("/addreview/:garageId", reviewController.createReview)
 routes.get("/averagereview/:garageId", reviewController.getAverageRating)
+routes.put("/updatereview/:reviewId", reviewController.updateReview)
+routes.delete("/deletereviewbyuser/:reviewId", reviewController.deleteReviewByUserId)
 
 
 module.exports = routes;
