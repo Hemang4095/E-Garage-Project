@@ -36,7 +36,7 @@ export const UpdateServices = () => {
           autoClose: 2000,
           theme: "dark",
           transition: Bounce,
-          onClose: () => navigate("/garageowner/availableservices")
+          onClose: () => navigate("/garageowner/garageservices")
         });
       }
     } catch (error) {

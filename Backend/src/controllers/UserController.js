@@ -247,10 +247,10 @@ const addUserWithFile = async (req, res) => {
         //mail send 
 
         const emailSubject = "Welcome to E-Garage!";
-        const emailText = `Hi ${savedUser.name || "User"}, your account has been successfully created.`;
+        const emailText = `Hi ${savedUser.firstname || "User"}, your account has been successfully created.`;
         const emailHtml = `
           <h2>Welcome to E-Garage! 🚗</h2>
-          <p>Hi <strong>${savedUser.name || "User"}</strong>,</p>
+          <p>Hi <strong>${savedUser.firstname || "User"}</strong>,</p>
           <p>Your account has been successfully registered.</p>
           <p>Thanks for joining us!</p>
         `;
